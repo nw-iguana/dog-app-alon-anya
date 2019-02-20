@@ -4,7 +4,46 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="main.css" />
     <title>Dog App</title>
   </head>
-  <body></body>
+  <body>
+    <header role="banner">
+      <h1>Dog Pic Generator</h1>
+    </header>
+
+    <div class="container">
+      <form role="form" class="form">
+        <input type="number" placeholder="number of images" required />
+        <button>Submit</button>
+      </form>
+
+      <section class="results hidden">
+        <h2>Check this dog out!</h2>
+      </section>
+    </div>
+
+    <!-- search by breed -->
+
+    <div class="container">
+      <header role="banner">
+        <h1>Dog Pic Generator</h1>
+      </header>
+      <form role="form" class="form-2">
+        <input type="text" placeholder="search by breed" required />
+        <button>Submit</button>
+      </form>
+
+      <section class="results-2 hidden-2">
+        <h2>Check this dog out!</h2>
+      </section>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
 </html>
