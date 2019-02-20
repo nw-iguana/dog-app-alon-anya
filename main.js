@@ -3,65 +3,59 @@
 function watchSubmit() {
   $(".form").submit(event => {
     event.preventDefault();
-    const inputVal = $('input[type="number"').val();
-    console.log(inputVal);
-    getDogImage(inputVal);
+    let userInput = $('input[type="number"').val();
+    generateDogImage(userInput);
   });
 }
 
-function getDogImage(imageAmount) {
-  const url = `https://dog.ceo/api/breeds/image/random/${imageAmount}`;
+function generateDogImage(numberOfImages) {
+  const url = `https://dog.ceo/api/breeds/image/random/${numberOfImages}`;
   fetch(url)
     .then(response => response.json())
-    .then(responseJson => {
-      console.log(responseJson);
-      renderImage(responseJson.message);
-    })
-    .catch(error => console.error("Error:", error));
+    .then(responseJson => renderImages(responseJson))
+    .catch(error => console.error(error));
 }
 
-function renderImage(url) {
-  $(".results").append(`
-  <img src="${url}" alt="dog image" class="results-img" />
-  `);
+function renderImages(responseJson) {
+  let results = responseJson["message"].map(element => {
+    return `<img src="${element}" alt="dog image" class="results-img" />`;
+  });
 
+  results.forEach(htmlString => $(".results").append(htmlString));
   $(".results").toggleClass("hidden");
 }
 
 // search by breed
 
-function watchSubmit() {
+function watchSubmitTwo() {
   $(".form-2").submit(event => {
     event.preventDefault();
-    const inputVal = $('input[type="text"').val();
-    console.log(inputVal);
-    getBreedImage(inputVal);
+    let userInput = $('input[type="text"').val();
+    generateDogImageTwo(userInput);
   });
 }
 
-function getBreedImage(breedType) {
-  const url = `https://dog.ceo/api/breed/${breedType}/images`;
+function generateDogImageTwo(breed) {
+  const url = `https://dog.ceo/api/breed/${breed}/images/random`;
   fetch(url)
     .then(response => response.json())
-    .then(responseJson => {
-      console.log(responseJson.message[0]);
-      renderImageTwo(responseJson.message[0]);
-    })
-    .catch(error => console.error("Error:", error));
+    .then(responseJson => renderImagesTwo(responseJson))
+    .catch(error => console.error(error));
 }
 
-function renderImageTwo(url) {
-  $(".results-2").append(`
-  <img src="${url}" alt="dog image" class="results-img" />
-  `);
+function renderImagesTwo(responseJson) {
+  let results = `<img src="${
+    responseJson.message
+  }" alt="dog image" class="results-img" />`;
+  console.log(results);
 
+  $(".results-2").append(results);
   $(".results-2").toggleClass("hidden-2");
 }
 
 function renderForm() {
   watchSubmit();
-  getDogImage();
-  getBreedImage();
+  watchSubmitTwo();
 }
 
 $(renderForm);
