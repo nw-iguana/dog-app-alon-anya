@@ -3,7 +3,7 @@
 function watchSubmit() {
   $(".form").submit(event => {
     event.preventDefault();
-    let userInput = $('input[type="number"').val();
+    let userInput = $('input[type="number"]').val();
     generateDogImage(userInput);
   });
 }
@@ -47,7 +47,6 @@ function renderImagesTwo(responseJson) {
   let results = `<img src="${
     responseJson.message
   }" alt="dog image" class="results-img" />`;
-  console.log(results);
 
   $(".results-2").append(results);
   $(".results-2").toggleClass("hidden-2");
