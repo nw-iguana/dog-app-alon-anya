@@ -1,7 +1,7 @@
 "use strict";
 
 function watchSubmit() {
-  $(".form").submit(event => {
+  $(".form").submit(function(event) {
     event.preventDefault();
     let userInput = $('input[type="number"]').val();
     generateDogImage(userInput);
@@ -21,8 +21,8 @@ function renderImages(responseJson) {
     return `<img src="${element}" alt="dog image" class="results-img" />`;
   });
 
-  results.forEach(htmlString => $(".results").append(htmlString));
-  $(".results").toggleClass("hidden");
+  $(".results").html(results.join(""));
+  $('input[type="number"]').val("");
 }
 
 // search by breed
@@ -48,8 +48,8 @@ function renderImagesTwo(responseJson) {
     responseJson.message
   }" alt="dog image" class="results-img" />`;
 
-  $(".results-2").append(results);
-  $(".results-2").toggleClass("hidden-2");
+  $(".results-2").html(results);
+  $('input[type="text"]').val("");
 }
 
 function renderForm() {
